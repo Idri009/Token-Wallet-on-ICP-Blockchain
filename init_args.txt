@@ -1,0 +1,15 @@
+(variant {Init = record {
+  token_symbol = "DLTK";
+  token_name = "Dev Liftoff Token";
+  minting_account = record { owner = principal "kipku-ttcnu-bb5ep-7p36y-5fih6-bur36-sktyr-wytjk-giu4c-mqyyp-2qe" };
+  transfer_fee = 10_000;
+  metadata = vec {};
+  feature_flags = opt record{icrc2 = true};
+  initial_balances = vec { record { record { owner = principal "jfcy2-zihit-wkvfe-2ianj-prkk7-qouhh-ed4ha-w5xqp-rgmo2-ub7rj-3ae" }; 10_000_000_000; }; };
+  archive_options = record {
+    num_blocks_to_archive = 1000;
+    trigger_threshold = 2000;
+    controller_id = principal "oe6xr-2w6oc-tzz6h-asxgl-ehrkk-lxesi-nn2fp-73ima-ke5ga-and7n-iqe";
+    cycles_for_archive_creation = opt 10000000000000;
+  };
+}})

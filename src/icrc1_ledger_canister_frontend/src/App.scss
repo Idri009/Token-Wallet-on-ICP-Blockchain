@@ -1,0 +1,529 @@
+@use "sass:color";
+
+// Variables
+$primary-color: #6366f1;
+$primary-hover: #4f46e5;
+$secondary-color: #64748b;
+$success-color: #10b981;
+$error-color: #ef4444;
+$warning-color: #f59e0b;
+$background-color: #f8fafc;
+$card-background: #ffffff;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$border-color: #e2e8f0;
+$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card {
+  background: $card-background;
+  border-radius: 12px;
+  box-shadow: $shadow;
+  padding: 24px;
+  border: 1px solid $border-color;
+}
+
+@mixin button-base {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: $background-color;
+  color: $text-primary;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Header
+.header {
+  background: $card-background;
+  border-bottom: 1px solid $border-color;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .principal {
+      background: $background-color;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 12px;
+      color: $text-secondary;
+    }
+  }
+}
+
+// Message system
+.message {
+  margin: 16px 24px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+
+  &.message-success {
+    background: rgba($success-color, 0.1);
+    color: $success-color;
+    border: 1px solid rgba($success-color, 0.2);
+  }
+
+  &.message-error {
+    background: rgba($error-color, 0.1);
+    color: $error-color;
+    border: 1px solid rgba($error-color, 0.2);
+  }
+
+  &.message-warning {
+    background: rgba($warning-color, 0.1);
+    color: $warning-color;
+    border: 1px solid rgba($warning-color, 0.2);
+  }
+}
+
+// Main content
+.main {
+  flex: 1;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+// Balance card
+.balance-card {
+  @include card;
+  text-align: center;
+  margin-bottom: 32px;
+
+  .balance-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    h2 {
+      color: $text-secondary;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .balance-amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    .amount {
+      font-size: 48px;
+      font-weight: 700;
+      color: $primary-color;
+    }
+
+    .currency {
+      font-size: 24px;
+      color: $text-secondary;
+    }
+  }
+}
+
+// Tabs
+.tabs {
+  display: flex;
+  background: $card-background;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+  box-shadow: $shadow;
+  border: 1px solid $border-color;
+
+  .tab {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: $text-secondary;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &:hover {
+      color: $text-primary;
+      background: rgba($primary-color, 0.05);
+    }
+
+    &.active {
+      background: $primary-color;
+      color: white;
+    }
+  }
+}
+
+// Tab content
+.tab-content {
+  @include card;
+}
+
+// Wallet info
+.wallet-info {
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    label {
+      font-weight: 600;
+      color: $text-secondary;
+    }
+
+    .value-with-copy {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      span {
+        font-family: 'Monaco', 'Menlo', monospace;
+        font-size: 12px;
+        color: $text-primary;
+        background: $background-color;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+
+      button {
+        @extend .btn-icon;
+        padding: 6px;
+      }
+    }
+  }
+}
+
+// Transfer form
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-weight: 600;
+      color: $text-secondary;
+      font-size: 14px;
+    }
+
+    input {
+      padding: 12px 16px;
+      border: 2px solid $border-color;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+
+      &::placeholder {
+        color: $text-secondary;
+      }
+    }
+  }
+}
+
+// Transaction history
+.transaction-history {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .transaction {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: $background-color;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+
+    &.received {
+      border-left: 4px solid $success-color;
+    }
+
+    &.sent {
+      border-left: 4px solid $primary-color;
+    }
+
+    .tx-icon {
+      width: 40px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tx-details {
+      flex: 1;
+
+      .tx-type {
+        font-weight: 600;
+        font-size: 14px;
+        color: $text-primary;
+        margin-bottom: 4px;
+      }
+
+      .tx-amount {
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 4px;
+
+        .transaction.received & {
+          color: $success-color;
+        }
+
+        .transaction.sent & {
+          color: $primary-color;
+        }
+      }
+
+      .tx-info {
+        color: $text-secondary;
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      .tx-date {
+        color: $text-secondary;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .no-transactions {
+    text-align: center;
+    color: $text-secondary;
+    font-style: italic;
+    padding: 32px;
+  }
+}
+
+// Welcome screen
+.welcome-screen {
+  flex: 1;
+  @include flex-center;
+  padding: 48px 24px;
+
+  .welcome-content {
+    text-align: center;
+    max-width: 500px;
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 18px;
+      color: $text-secondary;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Buttons
+.btn {
+  @include button-base;
+
+  &.btn-primary {
+    background: $primary-color;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background: $primary-hover;
+      transform: translateY(-1px);
+    }
+  }
+
+  &.btn-secondary {
+    background: $secondary-color;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background: color.adjust($secondary-color, $lightness: 10%);
+    }
+  }
+
+  &.btn-outline {
+    background: transparent;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+
+    &:hover:not(:disabled) {
+      background: $primary-color;
+      color: white;
+    }
+  }
+
+  &.btn-large {
+    padding: 16px 32px;
+    font-size: 18px;
+  }
+
+  &.btn-icon {
+    padding: 8px;
+    background: transparent;
+    color: $text-secondary;
+    border: 1px solid $border-color;
+
+    &:hover {
+      background: $background-color;
+      color: $text-primary;
+    }
+  }
+}
+
+// Utility classes
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 16px;
+
+    .logo h1 {
+      font-size: 20px;
+    }
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .balance-card .balance-amount {
+    font-size: 36px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    
+    .tab {
+      justify-content: flex-start;
+      padding: 16px;
+    }
+  }
+
+  .wallet-info .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .transaction {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome .welcome-content h2 {
+    font-size: 28px;
+  }
+
+  .welcome .welcome-content p {
+    font-size: 16px;
+  }
+}

@@ -1,19 +1,9 @@
 {
   "canisters": {
-    "icrc1_ledger_canister_backend": {
-      "candid": "src/icrc1_ledger_canister_backend/icrc1_ledger_canister_backend.did",
-      "package": "icrc1_ledger_canister_backend",
-      "type": "rust"
-    },
-    "icrc1_ledger_canister_frontend": {
-      "dependencies": [
-        "icrc1_ledger_canister_backend"
-      ],
-      "source": [
-        "src/icrc1_ledger_canister_frontend/dist"
-      ],
-      "type": "assets",
-      "workspace": "icrc1_ledger_canister_frontend"
+    "icrc1_ledger_canister": {
+      "type": "custom",
+      "candid": "https://raw.githubusercontent.com/dfinity/ic/21a02f483fa8028568f4c2c5920ec960c87269c0/rs/ledger_suite/icrc1/ledger/ledger.did",
+      "wasm": "https://download.dfinity.systems/ic/21a02f483fa8028568f4c2c5920ec960c87269c0/canisters/ic-icrc1-ledger.wasm.gz"
     }
   },
   "defaults": {
