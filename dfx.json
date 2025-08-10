@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "icrc1_ledger_canister_backend": {
+      "candid": "src/icrc1_ledger_canister_backend/icrc1_ledger_canister_backend.did",
+      "package": "icrc1_ledger_canister_backend",
+      "type": "rust"
+    },
+    "icrc1_ledger_canister_frontend": {
+      "dependencies": [
+        "icrc1_ledger_canister_backend"
+      ],
+      "source": [
+        "src/icrc1_ledger_canister_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "icrc1_ledger_canister_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
